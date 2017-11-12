@@ -109,6 +109,11 @@ defmodule MapSetTest do
     assert Enum.sort(list) == Enum.to_list(5..120)
   end
 
+  test "into MapSet" do
+    assert MapSet.equal?(Enum.into([1, "a", :b], MapSet.new()), MapSet.new([1, "a", :b]))
+    assert MapSet.equal?(Enum.into([1, "a", :b], MapSet), MapSet.new([1, "a", :b]))
+  end
+
   test "MapSet v1 compatibility" do
     result = 1..5 |> map_set_v1() |> MapSet.new()
     assert MapSet.equal?(result, MapSet.new(1..5))

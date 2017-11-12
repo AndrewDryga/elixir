@@ -384,6 +384,8 @@ defmodule MapSet do
   end
 
   defimpl Collectable do
+    def into(MapSet), do: into(MapSet.new())
+
     def into(original) do
       fun = fn
         map_set, {:cont, x} -> MapSet.put(map_set, x)
